@@ -1,0 +1,1 @@
+Machine learning enables computers to learn patterns from data without being explicitly programmed. These systems improve their performance as they process more examples. Responsible development also requires careful evaluation of bias and data quality.

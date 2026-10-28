@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict');
+const {analyze}=require('../assets/engine.js');
+const text='Machine learning discovers patterns in data. Models learn from labeled examples.';
+let r=analyze(text,[{name:'Exact',text},{name:'Different',text:'The garden has fresh tomatoes and green vegetables.'}]);
+assert.ok(Math.abs(r.similarity-1)<1e-9);assert.equal(r.sources[0].name,'Exact');assert.equal(r.passages.filter(p=>p.flagged).length,2);
+r=analyze('Zebras gallop across savannas.',[{name:'Other',text:'Quantum photons exhibit entanglement.'}]);assert.ok(r.similarity<.15);
+r=analyze('Data science creates useful models.',[{name:'Copy',text:'Data science creates useful models.'}],.9);assert.ok(r.passages[0].flagged);
+r=analyze('a',[{name:'Short',text:'a'}]);assert.ok(Number.isFinite(r.similarity));
+assert.throws(()=>analyze('Sentence. '.repeat(301),[{name:'Ref',text}]),/300/);
+console.log('Browser engine: exact copy, unrelated text, threshold, short input, and passage limits passed.');

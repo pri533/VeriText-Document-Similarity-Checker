@@ -1,0 +1,1 @@
+Machine learning enables computers to learn patterns from data without being explicitly programmed. These systems improve their performance as they process more examples. Supervised learning uses labeled examples to predict outcomes.
